@@ -61,6 +61,18 @@
   --color-white: #ffffff;
   --color-black: #101828;
 
+  --color-indofood-50: #e8f0f8;
+  --color-indofood-100: #c9dcee;
+  --color-indofood-200: #9dc0e0;
+  --color-indofood-300: #6a9fce;
+  --color-indofood-400: #3a7fbd;
+  --color-indofood-500: #00579f;
+  --color-indofood-600: #004c8c;
+  --color-indofood-700: #003f75;
+  --color-indofood-800: #00325d;
+  --color-indofood-900: #002545;
+  --color-indofood-red: #ed1c24;
+
   --color-brand-25: #f2f7ff;
   --color-brand-50: #ecf3ff;
   --color-brand-100: #dde9ff;

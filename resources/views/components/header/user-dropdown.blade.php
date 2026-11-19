@@ -1,36 +1,26 @@
+@php
+    $authUser = auth()->user();
+    $initial = mb_strtoupper(mb_substr($authUser?->name ?? '?', 0, 1));
+@endphp
+
 <x-ui.dropdown-menu>
     <x-ui.dropdown-menu.trigger class="dropdown-toggle flex items-center text-gray-700 dark:text-gray-400">
-        <span class="me-3 h-11 w-11 overflow-hidden rounded-lg">
-            <img width="44" height="44" src="/assets/images/user/owner.png" alt="User" />
+        <span class="me-3 flex h-11 w-11 items-center justify-center rounded-lg bg-indofood-50 text-base font-semibold text-indofood-500 dark:bg-indofood-500/15 dark:text-indofood-300">
+            {{ $initial }}
         </span>
 
-        <span class="me-1 block text-sm font-medium">Musharof</span>
+        <span class="me-1 block text-sm font-medium">{{ $authUser?->name }}</span>
 
         <x-svg.chevron-down class="size-5 text-gray-500 duration-200 dark:text-gray-400" x-bind:class="open ? 'rotate-180' : 'rotate-0'" />
     </x-ui.dropdown-menu.trigger>
 
     <x-ui.dropdown-menu.content align="end" :side-offset="12" class="w-65 p-3">
         <div class="px-3 py-2">
-            <span class="block text-sm font-medium text-gray-700 dark:text-gray-400">Musharof Chowdhury</span>
-            <span class="mt-0.5 block text-xs text-gray-500 dark:text-gray-400">randomuser@pimjo.com</span>
+            <span class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ $authUser?->name }}</span>
+            <span class="mt-0.5 block text-xs text-gray-500 dark:text-gray-400">{{ $authUser?->email }}</span>
         </div>
 
         <x-ui.dropdown-menu.separator />
-
-        <x-ui.dropdown-menu.item to="/profile">
-            <x-svg.user-circle class="size-6" />
-            {{ __('userDropdown.editProfile') }}
-        </x-ui.dropdown-menu.item>
-
-        <x-ui.dropdown-menu.item to="/profile">
-            <x-svg.gear class="size-6" />
-            {{ __('userDropdown.accountSettings') }}
-        </x-ui.dropdown-menu.item>
-
-        <x-ui.dropdown-menu.item to="/profile">
-            <x-svg.info-circle class="size-6" />
-            {{ __('userDropdown.support') }}
-        </x-ui.dropdown-menu.item>
 
         <x-ui.dropdown-menu.sub>
             <x-ui.dropdown-menu.sub-trigger>

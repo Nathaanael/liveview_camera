@@ -25,9 +25,8 @@
             </x-ui.button>
 
             <!-- Logo (mobile only) -->
-            <a href="/" class="xl:hidden">
-                <img width="154" height="32" class="dark:hidden" src="/assets/images/logo/logo.svg" alt="Logo" />
-                <img width="154" height="32" class="hidden dark:block" src="/assets/images/logo/logo-dark.svg" alt="Logo" />
+            <a href="{{ url('/') }}" class="xl:hidden">
+                <img width="154" height="26" class="h-auto w-[154px]" src="/assets/images/logo/Indofood_CBP.svg.webp" alt="Indofood CBP" />
             </a>
 
             <!-- Application menu toggle (mobile only) -->

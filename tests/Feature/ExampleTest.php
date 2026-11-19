@@ -1,7 +1,9 @@
 <?php
 
-test('the application returns a successful response', function () {
-    $response = $this->get('/ecommerce');
+test('the root redirects guests to the login page', function () {
+    $this->get('/')->assertRedirect(route('login'));
+});
 
-    $response->assertStatus(200);
+test('the login page renders', function () {
+    $this->get('/login')->assertOk()->assertSee(__('login.welcomeTitle'));
 });

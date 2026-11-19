@@ -1,102 +1,33 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
-// dashboard pages
+// root: send guests to login, signed-in users to their home page
 Route::get('/', function () {
-    return redirect()->route('ecommerce');
-})->name('dashboard');
+    return redirect(LoginController::homeFor(auth()->user()) ?? route('login'));
+})->name('home');
 
-Route::get('/ecommerce', function () {
-    return view('pages.dashboard.ecommerce', ['title' => 'E-commerce Dashboard']);
-})->name('ecommerce');
+// authentication
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'show'])->name('login');
+    Route::post('/login', [LoginController::class, 'store'])->middleware('throttle:10,1')->name('login.store');
+});
 
-// cctv live view (test page)
-Route::get('/liveview', function () {
-    return view('pages.liveview.index', [
-        'title' => 'Live View',
-        'go2rtcUrl' => config('cctv.go2rtc_url'),
-        'playerMode' => config('cctv.player_mode'),
-        'cameras' => config('cctv.test_cameras'),
-    ]);
-})->name('liveview');
+Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('logout');
 
-// calendar pages
-Route::get('/calendar', function () {
-    return view('pages.calendar', ['title' => 'Calendar']);
-})->name('calendar');
+// admin pages
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('pages.dashboard.dashboardAdmin', ['title' => __('Dashboard')]);
+    })->name('dashboard');
 
-// profile pages
-Route::get('/profile', function () {
-    return view('pages.profile', ['title' => 'Profile']);
-})->name('profile');
-
-// form pages
-Route::get('/form-elements', function () {
-    return view('pages.forms.form-elements', ['title' => 'Form Elements']);
-})->name('form-elements');
-
-// tables pages
-Route::get('/basic-tables', function () {
-    return view('pages.tables.basic-tables', ['title' => 'Basic Tables']);
-})->name('basic-tables');
-
-// pages
-Route::get('/blank', function () {
-    return view('pages.pages.blank', ['title' => 'Blank']);
-})->name('blank');
-
-// error pages
-Route::get('/error-404', function () {
-    return view('pages.errors.error-404', ['title' => 'Error 404']);
-})->name('error-404');
-
-// chart pages
-Route::get('/line-chart', function () {
-    return view('pages.chart.line-chart', ['title' => 'Line Chart']);
-})->name('line-chart');
-
-Route::get('/bar-chart', function () {
-    return view('pages.chart.bar-chart', ['title' => 'Bar Chart']);
-})->name('bar-chart');
-
-// authentication pages
-Route::get('/signin', function () {
-    return view('pages.auth.signin', ['title' => 'Sign In']);
-})->name('signin');
-
-Route::get('/signup', function () {
-    return view('pages.auth.signup', ['title' => 'Sign Up']);
-})->name('signup');
-
-Route::post('/logout', function () {
-    return redirect()->route('signin');
-})->name('logout');
-
-// ui elements pages
-Route::get('/alerts', function () {
-    return view('pages.ui-elements.alerts', ['title' => 'Alerts']);
-})->name('alerts');
-
-Route::get('/avatars', function () {
-    return view('pages.ui-elements.avatars', ['title' => 'Avatars']);
-})->name('avatars');
-
-Route::get('/badge', function () {
-    return view('pages.ui-elements.badge', ['title' => 'Badges']);
-})->name('badge');
-
-Route::get('/buttons', function () {
-    return view('pages.ui-elements.buttons', ['title' => 'Buttons']);
-})->name('buttons');
-
-Route::get('/images', function () {
-    return view('pages.ui-elements.images', ['title' => 'Images']);
-})->name('images');
-
-Route::get('/videos', function () {
-    return view('pages.ui-elements.videos', ['title' => 'Videos']);
-})->name('videos');
-
-// legacy URLs
-Route::redirect('/badges', '/badge');
+    Route::get('/liveview', function () {
+        return view('pages.liveview.index', [
+            'title' => __('Live View'),
+            'go2rtcUrl' => config('cctv.go2rtc_url'),
+            'playerMode' => config('cctv.player_mode'),
+            'cameras' => config('cctv.test_cameras'),
+        ]);
+    })->name('liveview');
+});

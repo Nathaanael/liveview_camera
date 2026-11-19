@@ -58,12 +58,12 @@
     @mouseleave="$store.sidebar.setHovered(false)">
     <!-- Logo Section -->
     <div class="py-8 flex items-center gap-2" :class="(!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ? 'justify-center' : 'justify-between'">
-        <a href="/">
+        <a href="{{ url('/') }}">
             <div class="hidden [.sidebar-expanded_&]:block">
-                <img class="dark:hidden" src="/assets/images/logo/logo.svg" alt="Logo" width="150" height="40" />
-                <img class="hidden dark:block" src="/assets/images/logo/logo-dark.svg" alt="Logo" width="150" height="40" />
+                <img src="/assets/images/logo/Indofood_CBP.svg.webp" alt="Indofood CBP" width="170" height="29" class="h-auto w-[170px]" />
+                <span class="mt-1 block text-xs font-semibold text-indofood-500 dark:text-indofood-300">{{ __('app.subtitle') }}</span>
             </div>
-            <img class="block [.sidebar-expanded_&]:hidden" src="/assets/images/logo/logo-icon.svg" alt="Logo" width="32" height="32" />
+            <img class="block h-auto w-10 [.sidebar-expanded_&]:hidden" src="/assets/images/logo/Indofood_CBP.svg.webp" alt="Indofood CBP" width="40" height="7" />
         </a>
     </div>
 

@@ -22,3 +22,8 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# go2rtc (binary + config with camera credentials)
+/go2rtc/*.exe
+/go2rtc/*.zip
+/go2rtc/go2rtc.yaml

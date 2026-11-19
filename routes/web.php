@@ -11,6 +11,16 @@ Route::get('/ecommerce', function () {
     return view('pages.dashboard.ecommerce', ['title' => 'E-commerce Dashboard']);
 })->name('ecommerce');
 
+// cctv live view (test page)
+Route::get('/liveview', function () {
+    return view('pages.liveview.index', [
+        'title' => 'Live View',
+        'go2rtcUrl' => config('cctv.go2rtc_url'),
+        'playerMode' => config('cctv.player_mode'),
+        'cameras' => config('cctv.test_cameras'),
+    ]);
+})->name('liveview');
+
 // calendar pages
 Route::get('/calendar', function () {
     return view('pages.calendar', ['title' => 'Calendar']);

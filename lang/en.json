@@ -2555,5 +2555,10 @@
     "sales.revenueChart.weekly": "Weekly",
     "sales.revenueChart.monthly": "Monthly",
     "sales.revenueChart.online": "Online",
-    "sales.revenueChart.offline": "Offline"
+    "sales.revenueChart.offline": "Offline",
+    "Live View": "Live View",
+    "Live View Test": "Live View Test",
+    "Grid uses the sub stream; click a camera to open the main stream.": "Grid uses the sub stream; click a camera to open the main stream.",
+    "No cameras configured.": "No cameras configured.",
+    "Fullscreen": "Fullscreen"
 }

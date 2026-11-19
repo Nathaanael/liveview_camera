@@ -65,6 +65,10 @@ return [
         'title' => 'Laravel SignUp Page | TailAdmin - Laravel Dashboard Template',
         'description' => 'This is Laravel SignUp Page TailAdmin Dashboard Template',
     ],
+    '/liveview' => [
+        'title' => 'CCTV Live View',
+        'description' => 'Live view of CCTV cameras per department',
+    ],
     '/videos' => [
         'title' => 'Laravel Videos | TailAdmin - Laravel Dashboard Template',
         'description' => 'This is Laravel Videos page for TailAdmin - Laravel Tailwind CSS Admin Dashboard Template',
